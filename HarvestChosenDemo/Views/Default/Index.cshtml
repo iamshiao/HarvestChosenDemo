@@ -1,0 +1,33 @@
+﻿
+@using HarvestChosenDemo.Controllers
+@model MyViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <h1>Harvest Chosen Example</h1>
+    <hr />
+    @using (Html.BeginForm())
+    {
+        @Html.ListBoxFor(x => x.SelectedValues, Model.Values, new { @class = "chosen-select", multiple = "multiple", style = "width: 300px", data_placeholder = "請選擇" })
+        <br />
+        <input type="submit" value="InputLst" />
+    }
+</div>
+
+@section scripts {
+    <script>
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': { allow_single_deselect: true },
+            '.chosen-select-no-single': { disable_search_threshold: 10 },
+            '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+            '.chosen-select-width': { width: "95%" }
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+    </script>
+}
